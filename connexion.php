@@ -5,35 +5,73 @@ informations, alors l’utilisateur est considéré comme
 connecté et une (ou plusieurs) variables de session
  sont créées. -->
 <?php
+session_start();
 
- session_start();
+// si le bouton "connexion" est appuyé
+if (isset($_POST['connexion'])) {
 
- ?>
+    $login = htmlspecialchars($_POST['login']);
+    $password = htmlspecialchars($_POST['password']);
+    // connecte toi à la bdd
+    $bdd = mysqli_connect('localhost', 'root', "", 'moduleconnexion');
+    // requet pr rechercher si user existe
+    $requete = mysqli_query($bdd, "SELECT * FROM utilisateurs WHERE
+    login ='" . $login . "' AND password = '" . $password . "'");
 
- <!DOCTYPE html>
+    if (mysqli_num_rows($requete) == 0) {
+        echo "Le pseudo ou le mot de passe est incorrect, le compte n'a pas été trouvé.";
+    } else {
+        // on ouvre la session avec $_SESSION:
+        $_SESSION['password']  = $password; // la session peut être appelée différemment et son contenu aussi peut être autre chose que le pseudo
+        $_SESSION['login'] = $login;
+        echo "Vous êtes à présent connecté !";
+        var_dump($_SESSION);
+    }
+}
+
+
+
+
+?>
+
+<!DOCTYPE html>
 <html lang="en">
- <head>
-     <meta charset="UTF-8">
-     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <title>Connexion</title>
-     <link rel="stylesheet" href="./style.css">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connexion</title>
+    <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
-    <div class="login-form">
-        <form action="connexion.php" method="post">
-            <h2 class="text-center">Connexion</h2>
-            <div class="form-group">
-                <input type="login" name="login" class="form-control" placeholder="Login" required="required" autocomplete="off">
-            </div>
-            <div class="form-group">
-                <input type="password" name="password" class="form-control" placeholder="Password" required="required" autocomplete="off">
-            </div>
-            <div class="form-group">
-                <button type="submit" class=btn btn-primary btn-block>Connexion</button>
-            </div>
-        <p class= "text-center"><a href="inscription.php">Inscription</a></p>
-    </div>
-        
+    <header>
+        <h1>CONNEXION</h1>
+    </header>
+    <main>
+        <div id="myid">
+            <form action="connexion.php" method="post">
+                <table>
+                    <tr>
+
+                        <td>Login</td>
+                        <td><input type="text" name="login" placeholder="Ex : deggg@laplate.io" required></td>
+                    </tr>
+                    <tr>
+
+                        <td>Mot de passe</td>
+                        <td><input type="password" name="password" placeholder="Ex : *****" required></td>
+                    </tr>
+
+                </table>
+                <div id="but">
+                    <button type="submit" name="connexion">Connexion</button>
+                </div>
+            </form>
+        </div>
+
+    </main>
 </body>
+
 </html>

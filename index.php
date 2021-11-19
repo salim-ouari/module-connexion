@@ -15,10 +15,29 @@ connecté et une (ou plusieurs) variables de session
  sont créées. -->
 
 
-<?php  
+<?php
 
 
 ?>
 
+<!DOCTYPE html>
+<html lang="en">
 
- 
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <p>Bienvenue sur mon site, pour en voir plus,
+        <a href="inscription.php">Inscrivez-vous.</a>
+        Sinon, <a href="connexion.php">Connectez-vous</a>
+    </p>
+
+</body>
+
+</html>

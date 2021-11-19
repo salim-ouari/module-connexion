@@ -3,3 +3,5 @@ l’utilisateur de modifier ses informations. Ce
 formulaire est par défaut pré-rempli avec les 
 informations qui sont actuellement stockées en base
  de données. -->
+<?
+session_start();
