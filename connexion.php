@@ -2,34 +2,44 @@
 “password”. Lorsque le formulaire est validé, s’il
 existe un utilisateur en bdd correspondant à ces
 informations, alors l’utilisateur est considéré comme
-connecté et une (ou plusieurs) variables de session
+connecté et une ou plusieurs variables de session
  sont créées. -->
+
 <?php
 session_start();
+
+$msg = '';
 
 // si le bouton "connexion" est appuyé
 if (isset($_POST['connexion'])) {
 
     $login = htmlspecialchars($_POST['login']);
     $password = htmlspecialchars($_POST['password']);
-    // connecte toi à la bdd
-    $bdd = mysqli_connect('localhost', 'root', "", 'moduleconnexion');
-    // requet pr rechercher si user existe
-    $requete = mysqli_query($bdd, "SELECT * FROM utilisateurs WHERE
-    login ='" . $login . "' AND password = '" . $password . "'");
 
-    if (mysqli_num_rows($requete) == 0) {
-        echo "Le pseudo ou le mot de passe est incorrect, le compte n'a pas été trouvé.";
-    } else {
-        // on ouvre la session avec $_SESSION:
-        $_SESSION['password']  = $password; // la session peut être appelée différemment et son contenu aussi peut être autre chose que le pseudo
-        $_SESSION['login'] = $login;
-        echo "Vous êtes à présent connecté !";
-        var_dump($_SESSION);
+
+    if ($login != NULL && $password != NULL) {
+
+
+        // connecte toi à la bdd
+        $bdd = mysqli_connect('localhost', 'root', "", 'moduleconnexion');
+        mysqli_set_charset($bdd, 'utf8');
+        // requet pr rechercher si user existe
+        $requete = mysqli_query($bdd, "SELECT * FROM utilisateurs WHERE login = '$login' AND password = '$password'");
+        $resultat = mysqli_fetch_all($requete, MYSQLI_ASSOC);
+
+        if (count($resultat) == 1) {
+            // on ouvre la session avec $_SESSION:
+            $_SESSION['password']  = $password; // la session peut être appelée différemment et son contenu aussi peut être autre chose que le pseudo
+            $_SESSION['login'] = $login;
+            header('Location: profil.php');
+            var_dump($_SESSION);
+            $msg = "<p class= 'Vous êtes à présent connecté!>/p>";
+        } else {
+
+            echo "Le pseudo ou le mot de passe est incorrect, le compte n'a pas été trouvé.";
+        }
     }
 }
-
-
 
 
 ?>
@@ -69,6 +79,7 @@ if (isset($_POST['connexion'])) {
                     <button type="submit" name="connexion">Connexion</button>
                 </div>
             </form>
+            <?php echo $msg;   ?>
         </div>
 
     </main>

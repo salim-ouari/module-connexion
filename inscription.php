@@ -1,10 +1,12 @@
 <?php
 
+
 $bdd = mysqli_connect('localhost', 'root', "", "moduleconnexion");
 
 mysqli_set_charset($bdd, 'utf8');
 
-$var = 'compte déjà existant';
+
+$message = '';
 
 
 if (
@@ -22,12 +24,11 @@ if (
     $requete2 = mysqli_query($bdd, "SELECT * FROM `utilisateurs` WHERE login = '$login'");
     // recupérer la requete "est ce que j'ai un login déjà existant
     $resultat = mysqli_fetch_all($requete2);
+
+
     // si elle me renvoi rien "pas de login existant"
     if (
         count($resultat) == 0
-
-        // et que $password==$password_confirm
-
 
     ) {
         // alors inscrit le dans ma base de donnée
@@ -36,7 +37,12 @@ if (
         // sinon affiche compte déjà existant
     } else
 
-        echo $var;
+        $message = 'compte déjà existant';
+
+    if ($password != $confirm_password) {
+
+        $message = 'les mots de passe ne sont pas identiques';
+    }
 }
 
 ?>
@@ -50,20 +56,18 @@ if (
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inscription</title>
     <link rel="stylesheet" href="style.css">
+
+
 </head>
 
 <body>
-    <header class="header">
+
+    <header>
 
         <h1>INSCRIPTION</h1>
 
     </header>
     <main>
-        <div class="var">
-            <?php echo $var; ?>
-
-        </div>
-
         <div id="myid">
             <form action="inscription.php" method="post">
                 <table>
@@ -95,6 +99,10 @@ if (
                 </table>
                 <div id="but">
                     <button type="submit" name="Inscription">Inscription</button>
+
+                    <?php
+                    echo "<p>$message</p>";
+                    ?>
                 </div>
             </form>
         </div>
