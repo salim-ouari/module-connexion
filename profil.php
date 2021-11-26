@@ -3,47 +3,59 @@ l’utilisateur de modifier ses informations. Ce
 formulaire est par défaut pré-rempli avec les 
 informations qui sont actuellement stockées en base
  de données. -->
-<?
-
+<?php
 session_start();
-include "connexion.php";
+var_dump($_SESSION);
 
-$bdd = mysqli_connect('localhost', 'root', "", "moduleconnexion");
+
+/* Condition if qui permet de se deconnecter */
+if (isset($_POST['deconnexion'])) {
+
+    session_destroy();
+    header('location: connexion.php');
+}
+
+$bdd = mysqli_connect('localhost', 'root', '', 'moduleconnexion');
 mysqli_set_charset($bdd, 'utf8');
-$requete = mysqli_query($connect, 'SELECT * FROM `utilisateurs` WHERE `login`= "' . $_SESSION['login'] . "'");
 
+//si jappuie sur le bouton modif => je rentre dans la condition
+if (isset($_POST['modif'])) {
+    // definitions des variables 
 
+    $id = $_SESSION['user']['id'];
+    $newlogin = htmlspecialchars($_POST['login']);
+    $newprenom = htmlspecialchars($_POST['prenom']);
+    $newnom = htmlspecialchars($_POST['nom']);
+    $newpassword = htmlspecialchars($_POST['password']);
+    $newpassword_confirm = htmlspecialchars($_POST['password_confirm']);
+    $error = "";
 
-if (isset($_POST['edit'])) {
-    var_dump([$_POST]);
-    $id = $_SESSION['id'];
-    $login = htmlspecialchars($_POST['login']);
-    $prenom = htmlspecialchars($_POST['prenom']);
-    $nom = htmlspecialchars($_POST['nom']);
-    $password = htmlspecialchars($_POST['password']);
-    // $confirm_password = htmlspecialchars($_POST['password_confirm']);
+    // condition champs vide
+    if (empty($_POST['login']) || empty($_POST['prenom']) || empty($_POST['nom']) || empty($_POST['password']) || empty($_POST['password_confirm'])) {
 
-    $requete = mysqli_query($connect, 'SELECT * FROM `utilisateurs` WHERE `id`= "' . $_SESSION['id'] . "'");
-    $update_new = mysqli_query($bdd, $requete);
-    $resultat = mysqli_fetch_assoc($requete);
-    $res = $resultat['id'];
-
-    if ($res === $id) {
-
-        $update = ("UPDATE `utilisateurs` SET `login`='$login',`prenom`='$name',`nom`='$surname',`password`='$password' WHERE id = '$id'");
-        $requete2 = mysqli_query($bdd, $update);
-    }
-
-    if ($requete2) {
-
-        // successful
-        echo 'vous pouver modifier votre profil';
+        $error = "veuillez remplir ce champs";
     } else {
-        echo 'profil non trouvé';
-    }
+        // condition mdp pas identique
+        if ($newpassword != $newpassword_confirm) {
+            $error = "Les mots de passe ne sont pas identiques.";
+        } else {
+            //requêtes sql pour update utilisateur
+            $requete2 = "UPDATE utilisateurs SET login = '$newlogin', prenom = '$newprenom', nom = '$newnom', password = '$newpassword' WHERE id = $id";
+            $modifprofil = mysqli_query($bdd, $requete2);
 
-    // session_destroy();
-    // header('Location:connexion.php');
+            // si requete est valide
+            if ($modifprofil == true) {
+
+                // je selectionne les news valeurs 
+                $query = mysqli_query($bdd, "SELECT * FROM utilisateurs WHERE id = $id");
+                $resultat = mysqli_fetch_assoc($query);
+                // je réecris les news valeurs dans session
+                $_SESSION['user'] = $resultat;
+
+                header('location: profil.php');
+            }
+        }
+    }
 }
 
 ?>
@@ -68,30 +80,32 @@ if (isset($_POST['edit'])) {
         <h1>PROFIL</h1>
 
     </header>
+
+
     <main>
         <div id="myid">
-            <form action="profil.php" method="post">
+            <form class="form" action="profil.php" method="post">
                 <h2 class="mypro"> MON PROFIL</h2>
                 <table>
                     <tr>
 
-                        <td>Nouveau Login</td>
-                        <td><input type="text" name="login" placeholder="Ex : deggg@laplate.io" required></td>
+                        <td>Nouveau Login<?php $_SESSION['user']['login']; ?></td>
+                        <td><input type="text" name="login" value="<?php echo $_SESSION['user']['login']; ?>"></td>
                     </tr>
                     <tr>
 
                         <td>Nouveau prénom</td>
-                        <td><input type="text" name="prenom" placeholder="Ex : john" required></td>
+                        <td><input type="text" name="prenom" value="<?php echo $_SESSION['user']['prenom']; ?>"></td>
                     </tr>
                     <tr>
 
                         <td>Nom</td>
-                        <td><input type=" text" name="nom" placeholder="Ex : Smith" required></td>
+                        <td><input type="text" name="nom" value="<?php echo $_SESSION['user']['nom']; ?>"></td>
                     </tr>
                     <tr>
 
                         <td>Nouveau Mot de passe</td>
-                        <td><input type="password" name="password" placeholder="Ex : *****" required></td>
+                        <td><input type="password" name="password" placeholder="Ex : *****"></td>
                     </tr>
                     <tr>
 
@@ -100,11 +114,14 @@ if (isset($_POST['edit'])) {
                     </tr>
                 </table>
                 <div id="but">
-                    <button type="submit" name="Inscription">Modifier</button>
-
+                    <button type="submit" name="modif">modifier</button>
                 </div>
             </form>
+
+            <form action="" method="post"><button type="submit" name="deconnexion">Déconnexion</button></form>
         </div>
+        <p>
+            <?php echo $error;   ?></p>
     </main>
 
     <!-- *************************footer*********************** -->

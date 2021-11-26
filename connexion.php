@@ -7,8 +7,8 @@ connecté et une ou plusieurs variables de session
 
 <?php
 session_start();
+$error = '';
 
-$msg = '';
 
 // si le bouton "connexion" est appuyé
 if (isset($_POST['connexion'])) {
@@ -16,30 +16,36 @@ if (isset($_POST['connexion'])) {
     $login = htmlspecialchars($_POST['login']);
     $password = htmlspecialchars($_POST['password']);
 
-
     if ($login != NULL && $password != NULL) {
-
-
         // connecte toi à la bdd
         $bdd = mysqli_connect('localhost', 'root', "", 'moduleconnexion');
         mysqli_set_charset($bdd, 'utf8');
         // requet pr rechercher si user existe
-        $requete = mysqli_query($bdd, "SELECT * FROM utilisateurs WHERE login = '$login' AND password = '$password'");
-        $resultat = mysqli_fetch_all($requete, MYSQLI_ASSOC);
+        $requete = mysqli_query($bdd, "SELECT * FROM utilisateurs WHERE login = '$login'");
+        $resultat = mysqli_fetch_assoc($requete);
 
-        if (count($resultat) == 1) {
-            // on ouvre la session avec $_SESSION:
-            $_SESSION['password']  = $password; // la session peut être appelée différemment et son contenu aussi peut être autre chose que le pseudo
-            $_SESSION['login'] = $login;
-            header('Location: profil.php');
-            var_dump($_SESSION);
-            $msg = "<p class= 'Vous êtes à présent connecté!>/p>";
-        } else {
+        if ($password == $resultat['password']) {
 
-            echo "Le pseudo ou le mot de passe est incorrect, le compte n'a pas été trouvé.";
+            $_SESSION['user'] = $resultat;
+            header('location: profil.php');
         }
+
+        if ($password == 'admin' && $password == $resultat['password']) {
+
+            $_SESSION['admin'] = $resultat;
+            header('location: admin.php');
+        }
+        // on ouvre la session avec $_SESSION:
+
+        else {
+
+            $error = "Le pseudo ou le mot de passe est incorrect, le compte n'a pas été trouvé.";
+        }
+    } else {
+        $error = 'probléme connexion';
     }
 }
+
 
 
 ?>
@@ -57,11 +63,12 @@ if (isset($_POST['connexion'])) {
 
 <body>
     <header>
-        <h1>CONNEXION</h1>
+
     </header>
     <main>
+        <h1>CONNEXION</h1>
         <div id="myid">
-            <form action="connexion.php" method="post">
+            <form class="form" action="connexion.php" method="post">
                 <table>
                     <tr>
 
@@ -79,10 +86,36 @@ if (isset($_POST['connexion'])) {
                     <button type="submit" name="connexion">Connexion</button>
                 </div>
             </form>
-            <?php echo $msg;   ?>
+            <p>
+                <?php echo $error;   ?></p>
         </div>
 
     </main>
+    <!-- *************************footer*********************** -->
+    <footer>
+
+        <div id="icons">
+
+            <a href="http://www.twitter.fr" target="_blank">
+                <img src="https://img.icons8.com/color/48/000000/twitter--v1.png" /></a>
+
+
+            <a href="http://www.instagram.com" target="_blank">
+                <img src="https://img.icons8.com/color/48/000000/instagram-new--v1.png" /></a>
+
+            <a href="http://www.facebook.fr" target="_blank">
+                <img src="https://img.icons8.com/fluency/48/000000/facebook.png" /></a>
+
+            <a href="https://github.com/salim-ouari/voyages.git" target="_blank">
+                <img src="https://img.icons8.com/color-glass/48/000000/github.png" /></a>
+        </div>
+
+        <div class="wrapper">
+            <h1 class="h1foot">My World</h1>
+            <div class="copyright">Copyright © 2021. Tous droits réservés.</div>
+        </div>
+
+    </footer>
 </body>
 
 </html>
