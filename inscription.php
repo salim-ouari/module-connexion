@@ -63,11 +63,9 @@ if (
 <body>
 
     <header>
-
-        <p class="head"> INSCRIPTION</p>
-
+        <h1 id="ac"> INSCRIPTION</p>
     </header>
-    >
+
     <main>
         <div id="myid">
             <form class="form" action="inscription.php" method="post">
