@@ -54,12 +54,7 @@ connecté et une (ou plusieurs) variables de session
             quia labore nam magnam similique dolor blanditiis natus voluptates quam doloribus nostrum dolores reprehenderit, nemo veniam provident
             iste non libero? Vitae, quasi minus. Maxime natus laudantium, modi eum dicta pariatur recusandae porro. Exercitationem rerum corrupti harum
             quibusdam.
-
-
         </p>
-
-
-
     </main>
     <!-- *************************footer*********************** -->
     <footer>
