@@ -73,8 +73,6 @@ $fetch = mysqli_fetch_all($requete, MYSQLI_ASSOC);
             </table>
         </div>
         <form id="deco" action="" method="post"><button type="submit" name="deconnexion">Déconnexion</button></form>
-
-
     </main>
     <!-- *************************footer*********************** -->
     <footer>
@@ -100,9 +98,6 @@ $fetch = mysqli_fetch_all($requete, MYSQLI_ASSOC);
             <h1 class="h1foot">My World</h1>
             <div class="copyright">Copyright © 2021. Tous droits réservés.</div>
         </div>
-
-
-
     </footer>
 </body>
 
@@ -113,26 +108,3 @@ $fetch = mysqli_fetch_all($requete, MYSQLI_ASSOC);
         echo 'Bonjour <i class="fas fa-user-circle"></i> ' . $_SESSION['login'] . '<br /><form method="POST" action="admin.php"><input type="submit" name="logout" value="Déconnexion" class="btn btn-danger"></form>';
     } ?>
             </section> -->
-
-<!-- /* Affiche la page admin seulement pour l'utilisateur admin */
-                                if (isset($_SESSION['id'])){
-                                    if ($_SESSION['id'] == 1){
-                                        echo '<li class="nav-item"><a class="nav-link" href="admin.php">Admin</a></li>';
-                                    }
-                                } -->
-
-<!-- /* Condition if qui permet si une session est active de faire disparaitre les pages connexion et inscription */
-                                if (!isset($_SESSION['id'])){
-                                    echo '<li class="nav-item"><a class="nav-link" href="connexion.php">Connexion</a></li>';
-                                    echo '<li class="nav-item"><a class="nav-link" href="inscription.php">Inscription</a></li>';
-                                }
-                            ?> -->
-<!-- 
-                            /* Affiche l'intégralité de la base de données */
-                            $check_db = mysqli_query($db,"SELECT * FROM utilisateurs");
-
-                            while($db_list = mysqli_fetch_assoc($check_db)){
-                                echo '<section class="container table-style"><table><thead><th>Utilisateur ' . $db_list['id'] . ' :</th></thead>';
-                                echo '<tbody><tr><td>ID : ' . $db_list['id'] . '</td></tr><tr><td>Login : ' . $db_list['login'] . '</td></tr><tr><td>Prénom : ' . $db_list['prenom'] . '</td></tr><tr><td>Nom : ' . $db_list['nom'] . '</td></tr><tr><td>Password : ' . $db_list['password'] . '</td></tr></tbody></table></section>';
-                            }
-                        ?> -->
