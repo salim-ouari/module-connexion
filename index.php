@@ -28,22 +28,36 @@ connecté et une (ou plusieurs) variables de session
 <body>
 
     <header>
-
+        <h1 id="ac">ACCUEIL</h1>
     </header>
-    <h1 id="ac">ACCUEIL</h1>
     <p class="acc">Bienvenue dans mon monde,<br> pour le découvrir, inscris toi ou connecte toi<br>
 
-
     </p>
+
     <main>
-
         <div class="butto">
+            <form class="fba" action="connexion.php">
+                <button type="submit">Connexion</button>
+            </form>
+            <form class="fba" action="inscription.php">
+                <button type="submit">Inscription</button>
+            </form>
 
-            <button><a href="connexion.php"></a>Connexion</button>
 
-            <button><a href="inscription.php"></a>Inscription</button>
 
         </div>
+
+        <p class="lorem">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam mollitia consectetur maxime, tempore consequatur impedit.
+            Voluptatem qui asperiores nobis quia mollitia distinctio inventore nam temporibus quis veniam ut, tenetur fugiat praesentium
+            nesciunt nihil velit incidunt dolores. Odit ad corrupti pariatur debitis fugit. Animi, voluptatum explicabo? Illum iure tempora
+            eveniet quas veritatis placeat sapiente, voluptate cumque consequuntur sed inventore, accusantium ex voluptatum. Adipisci laudantium
+            quia labore nam magnam similique dolor blanditiis natus voluptates quam doloribus nostrum dolores reprehenderit, nemo veniam provident
+            iste non libero? Vitae, quasi minus. Maxime natus laudantium, modi eum dicta pariatur recusandae porro. Exercitationem rerum corrupti harum
+            quibusdam.
+
+
+        </p>
+
 
 
     </main>
