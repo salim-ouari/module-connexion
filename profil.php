@@ -75,12 +75,8 @@ if (isset($_POST['modif'])) {
 <body>
 
     <header>
-
-
+        <h1 id="ac">PROFIL</h1>
     </header>
-    <h1>PROFIL</h1>
-
-
     <main>
         <div id="myid">
             <form class="form" action="profil.php" method="post">
@@ -120,7 +116,8 @@ if (isset($_POST['modif'])) {
             <form class="deco" action="" method="post"><button type="submit" name="deconnexion">Déconnexion</button></form>
         </div>
         <p>
-            <?php echo $error; ?></p>
+            <?php echo $error; ?>
+        </p>
     </main>
 
     <!-- *************************footer*********************** -->
