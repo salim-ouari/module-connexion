@@ -5,7 +5,6 @@ informations qui sont actuellement stockées en base
  de données. -->
 <?php
 session_start();
-var_dump($_SESSION);
 
 
 /* Condition if qui permet de se deconnecter */
@@ -77,15 +76,15 @@ if (isset($_POST['modif'])) {
 
     <header>
 
-        <h1>PROFIL</h1>
 
     </header>
+    <h1>PROFIL</h1>
 
 
     <main>
         <div id="myid">
             <form class="form" action="profil.php" method="post">
-                <h2 class="mypro"> MON PROFIL</h2>
+                <h2 class="mypro">MON PROFIL</h2>
                 <table>
                     <tr>
 
@@ -118,10 +117,10 @@ if (isset($_POST['modif'])) {
                 </div>
             </form>
 
-            <form action="" method="post"><button type="submit" name="deconnexion">Déconnexion</button></form>
+            <form class="deco" action="" method="post"><button type="submit" name="deconnexion">Déconnexion</button></form>
         </div>
         <p>
-            <?php echo $error;   ?></p>
+            <?php echo $error; ?></p>
     </main>
 
     <!-- *************************footer*********************** -->
@@ -145,7 +144,7 @@ if (isset($_POST['modif'])) {
         </div>
 
         <div class="wrapper">
-            <h1 class="h1foot">Scratch Agency<span class="orange">.</h1>
+            <h1 class="h1foot">My World</h1>
             <div class="copyright">Copyright © 2021. Tous droits réservés.</div>
         </div>
 

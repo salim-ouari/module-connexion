@@ -3,15 +3,37 @@ html {
 }
 
 body {
-  background-image: url("asset/");
+  background-image: url("asset/fantasy-g18c91a7c5_1920.jpg");
   padding: 0;
   margin: 0;
 }
 
 header {
   text-align: center;
-  background-color: orange;
   height: 100px;
+}
+
+#ac {
+  color: white;
+  text-align: center;
+  position: relative;
+  font-size: 50px;
+}
+
+.acc {
+  color: #caac00;
+  font-size: 40px;
+}
+
+h1 {
+  color: white;
+  text-align: center;
+}
+
+.head {
+  text-transform: uppercase;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: xx-large;
 }
 
 main {
@@ -19,6 +41,10 @@ main {
 }
 
 #myid {
+  text-align: center;
+}
+
+h2 {
   text-align: center;
 }
 
@@ -55,14 +81,75 @@ button[type="submit"] {
   transition: 0.4s;
 }
 button[type="submit"]:hover {
-  background: rgb(34, 85, 128);
-  color: white;
+  background: rgb(203, 212, 212);
+  color: rgb(0, 0, 0);
+}
+
+.deco {
+  margin-top: 20px;
+}
+
+.butto {
+  display: flex;
+}
+button {
+  display: inline;
+  cursor: pointer;
+  border: none;
+  font-size: 1.3rem;
+  padding: 10px 20px;
+  border-radius: 150px;
+  margin: 0 auto;
+  display: block;
+  transition: 0.4s;
+}
+button:hover {
+  letter-spacing: 3px;
+}
+button:active {
+  transform: scale(1.2);
+}
+button:hover + a,
+a:hover {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
 }
 
 p {
   text-align: center;
   color: red;
   font-weight: bold;
+}
+
+/******************** admin ***************************/
+
+.flex {
+  display: flex;
+  justify-content: center;
+}
+.tableau {
+  border-collapse: collapse;
+  margin: 25px 0;
+  font-size: 0.9em;
+  font-family: sans-serif;
+  min-width: 400px;
+  box-shadow: 0 0 20px rgba(207, 206, 196, 0.418);
+  backdrop-filter: blur(3px);
+  color: white;
+}
+
+.tableau thead tr {
+  background-color: #caac00;
+  color: #ffffff;
+  text-align: left;
+}
+.tableau th,
+.tableau td {
+  padding: 12px 15px;
+}
+.tableau tbody tr {
+  border-bottom: 1px solid #dddddd;
 }
 
 /* ********************footer******************** */
@@ -83,8 +170,9 @@ p {
 }
 
 footer {
+  background-color: rgba(247, 247, 247, 0.596);
+  backdrop-filter: blur(3px);
   height: 260px;
-  background-color: #444;
   display: grid;
   grid-template-columns: repeat(3);
 }

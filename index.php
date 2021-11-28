@@ -30,12 +30,21 @@ connecté et une (ou plusieurs) variables de session
     <header>
 
     </header>
+    <h1 id="ac">ACCUEIL</h1>
+    <p class="acc">Bienvenue dans mon monde,<br> pour le découvrir, inscris toi ou connecte toi<br>
+
+
+    </p>
     <main>
-        <h1>ACCUEIL</h1>
-        <p>Bienvenue sur mon site, pour en voir plus,
-            <a href="inscription.php">Inscrivez-vous.</a>
-            Sinon, <a href="connexion.php">Connectez-vous</a>
-        </p>
+
+        <div class="butto">
+
+            <button><a href="connexion.php"></a>Connexion</button>
+
+            <button><a href="inscription.php"></a>Inscription</button>
+
+        </div>
+
 
     </main>
     <!-- *************************footer*********************** -->

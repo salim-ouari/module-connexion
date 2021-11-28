@@ -43,36 +43,38 @@ $fetch = mysqli_fetch_all($requete, MYSQLI_ASSOC);
     </header>
     <main>
         <h1>ADMIN</h1>
-        <table class="tableau">
-            <thead>
-                <tr>
-                    <td>id</td>
-                    <td>prenom</td>
-                    <td>nom</td>
-                    <td>login</td>
-                    <td>password</td>
-                </tr>
-            </thead>
-            <tbody>
-                <?php foreach ($fetch as $user) : ?>
+        <div class="flex">
+            <table class="tableau">
+                <thead>
                     <tr>
-                        <td><?= $user["id"]; ?></td>
-                        <td><?= $user["nom"]; ?></td>
-                        <td><?= $user["prenom"]; ?></td>
-                        <td><?= $user["login"]; ?></td>
-                        <td><?= $user["password"]; ?></td>
-                        <!-- <td>
+                        <td>id</td>
+                        <td>prenom</td>
+                        <td>nom</td>
+                        <td>login</td>
+                        <td>password</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach ($fetch as $user) : ?>
+                        <tr>
+                            <td><?= $user["id"]; ?></td>
+                            <td><?= $user["nom"]; ?></td>
+                            <td><?= $user["prenom"]; ?></td>
+                            <td><?= $user["login"]; ?></td>
+                            <td><?= $user["password"]; ?></td>
+                            <!-- <td>
                         <form class="admin" action="" method="post"><button class="btn" type="submit" name="supprimer" value="<?= $user["id"]; ?>">Supprimer</button></form>
                     </td> -->
-                    </tr>
+                        </tr>
 
-                <?php endforeach; ?>
+                    <?php endforeach; ?>
 
-            </tbody>
-        </table>
-        <form action="" method="post"><button type="submit" name="deconnexion">Déconnexion</button></form>
+                </tbody>
+            </table>
         </div>
-        <p>
+        <form action="" method="post"><button type="submit" name="deconnexion">Déconnexion</button></form>
+
+
     </main>
     <!-- *************************footer*********************** -->
     <footer>

@@ -64,10 +64,10 @@ if (
 
     <header>
 
-
+        <p class="head"> INSCRIPTION</p>
 
     </header>
-    <h1>INSCRIPTION</h1>
+    >
     <main>
         <div id="myid">
             <form class="form" action="inscription.php" method="post">
