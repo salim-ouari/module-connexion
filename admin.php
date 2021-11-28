@@ -38,11 +38,11 @@ $fetch = mysqli_fetch_all($requete, MYSQLI_ASSOC);
 
     <header>
 
-
+        <h1 id="ac">ADMIN</h1>
 
     </header>
     <main>
-        <h1>ADMIN</h1>
+
         <div class="flex">
             <table class="tableau">
                 <thead>
@@ -72,7 +72,7 @@ $fetch = mysqli_fetch_all($requete, MYSQLI_ASSOC);
                 </tbody>
             </table>
         </div>
-        <form action="" method="post"><button type="submit" name="deconnexion">Déconnexion</button></form>
+        <form id="deco" action="" method="post"><button type="submit" name="deconnexion">Déconnexion</button></form>
 
 
     </main>
