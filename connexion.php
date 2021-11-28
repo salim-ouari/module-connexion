@@ -65,8 +65,11 @@ if (isset($_POST['connexion'])) {
     <header>
 
     </header>
+
+    <h1 id="ac">CONNEXION</h1>
+
     <main>
-        <h1>CONNEXION</h1>
+
         <div id="myid">
             <form class="form" action="connexion.php" method="post">
                 <table>
@@ -89,6 +92,17 @@ if (isset($_POST['connexion'])) {
             <p>
                 <?php echo $error;   ?></p>
         </div>
+        <p class="lorem">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam mollitia consectetur maxime, tempore consequatur impedit.
+            Voluptatem qui asperiores nobis quia mollitia distinctio inventore nam temporibus quis veniam ut, tenetur fugiat praesentium
+            nesciunt nihil velit incidunt dolores. Odit ad corrupti pariatur debitis fugit. Animi, voluptatum explicabo? Illum iure tempora
+            eveniet quas veritatis placeat sapiente, voluptate cumque consequuntur sed inventore, accusantium ex voluptatum. Adipisci laudantium
+            quia labore nam magnam similique dolor blanditiis natus voluptates quam doloribus nostrum dolores reprehenderit, nemo veniam provident
+            iste non libero? Vitae, quasi minus. Maxime natus laudantium, modi eum dicta pariatur recusandae porro. Exercitationem rerum corrupti harum
+            quibusdam.
+
+
+        </p>
+
 
     </main>
     <!-- *************************footer*********************** -->
