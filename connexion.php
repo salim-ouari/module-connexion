@@ -18,8 +18,7 @@ if (isset($_POST['connexion'])) {
 
     if ($login != NULL && $password != NULL) {
         // connecte toi à la bdd
-        $bdd = mysqli_connect('localhost', 'root', "", 'moduleconnexion');
-        mysqli_set_charset($bdd, 'utf8');
+        require('connect.php');
         // requet pr rechercher si user existe
         $requete = mysqli_query($bdd, "SELECT * FROM utilisateurs WHERE login = '$login'");
         $resultat = mysqli_fetch_assoc($requete);

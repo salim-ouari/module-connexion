@@ -1,7 +1,6 @@
 <?php
 
-$bdd = mysqli_connect('localhost', 'root', "", "moduleconnexion");
-mysqli_set_charset($bdd, 'utf8');
+require('connect.php');
 $message = '';
 
 if (
@@ -51,8 +50,6 @@ if (
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inscription</title>
     <link rel="stylesheet" href="style.css">
-
-
 </head>
 
 <body>
@@ -105,11 +102,8 @@ if (
     <footer>
 
         <div id="icons">
-
-
             <a href="http://www.twitter.fr" target="_blank">
                 <img src="https://img.icons8.com/color/48/000000/twitter--v1.png" /></a>
-
 
             <a href="http://www.instagram.com" target="_blank">
                 <img src="https://img.icons8.com/color/48/000000/instagram-new--v1.png" /></a>
@@ -125,9 +119,6 @@ if (
             <h1 class="h1foot">My World</h1>
             <div class="copyright">Copyright © 2021. Tous droits réservés.</div>
         </div>
-
-
-
     </footer>
 </body>
 

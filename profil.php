@@ -5,17 +5,16 @@ informations qui sont actuellement stockées en base
  de données. -->
 <?php
 session_start();
-
+$error = "";
 
 /* Condition if qui permet de se deconnecter */
 if (isset($_POST['deconnexion'])) {
 
     session_destroy();
-    header('location: connexion.php');
+    header('location: index.php');
 }
 
-$bdd = mysqli_connect('localhost', 'root', '', 'moduleconnexion');
-mysqli_set_charset($bdd, 'utf8');
+require('connect.php');
 
 //si jappuie sur le bouton modif => je rentre dans la condition
 if (isset($_POST['modif'])) {
@@ -27,7 +26,7 @@ if (isset($_POST['modif'])) {
     $newnom = htmlspecialchars($_POST['nom']);
     $newpassword = htmlspecialchars($_POST['password']);
     $newpassword_confirm = htmlspecialchars($_POST['password_confirm']);
-    $error = "";
+
 
     // condition champs vide
     if (empty($_POST['login']) || empty($_POST['prenom']) || empty($_POST['nom']) || empty($_POST['password']) || empty($_POST['password_confirm'])) {
@@ -124,8 +123,6 @@ if (isset($_POST['modif'])) {
     <footer>
 
         <div id="icons">
-
-
             <a href="http://www.twitter.fr" target="_blank">
                 <img src="https://img.icons8.com/color/48/000000/twitter--v1.png" /></a>
 
@@ -144,9 +141,6 @@ if (isset($_POST['modif'])) {
             <h1 class="h1foot">My World</h1>
             <div class="copyright">Copyright © 2021. Tous droits réservés.</div>
         </div>
-
-
-
     </footer>
 </body>
 

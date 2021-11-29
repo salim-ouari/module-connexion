@@ -10,15 +10,12 @@ session_start();
 if (isset($_POST['deconnexion'])) {
 
     session_destroy();
-    header('location: connexion.php');
+    header('location: index.php');
 }
 
-$bdd = mysqli_connect('localhost', 'root', "", "moduleconnexion");
-mysqli_set_charset($bdd, 'utf8');
+require('connect.php');
 $requete = mysqli_query($bdd, "SELECT * FROM `utilisateurs`");
 $fetch = mysqli_fetch_all($requete, MYSQLI_ASSOC);
-
-
 
 ?>
 
@@ -34,7 +31,6 @@ $fetch = mysqli_fetch_all($requete, MYSQLI_ASSOC);
 </head>
 
 <body class="admin">
-
 
     <header>
 
@@ -78,8 +74,6 @@ $fetch = mysqli_fetch_all($requete, MYSQLI_ASSOC);
     <footer>
 
         <div id="icons">
-
-
             <a href="http://www.twitter.fr" target="_blank">
                 <img src="https://img.icons8.com/color/48/000000/twitter--v1.png" /></a>
 
@@ -102,9 +96,3 @@ $fetch = mysqli_fetch_all($requete, MYSQLI_ASSOC);
 </body>
 
 </html>
-
-<!-- Condition if qui permet si la session est défini, d'afficher bonjour et le log de l'utilisateur && un bouton déconnexion 
- <?php if (isset($_SESSION['id'])) {
-        echo 'Bonjour <i class="fas fa-user-circle"></i> ' . $_SESSION['login'] . '<br /><form method="POST" action="admin.php"><input type="submit" name="logout" value="Déconnexion" class="btn btn-danger"></form>';
-    } ?>
-            </section> -->
