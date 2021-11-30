@@ -88,12 +88,12 @@ if (isset($_POST['modif'])) {
                     </tr>
                     <tr>
 
-                        <td>Nouveau prénom</td>
+                        <td>Nouveau prénom<?php $_SESSION['user']['prenom']; ?></td>
                         <td><input type="text" name="prenom" value="<?php echo $_SESSION['user']['prenom']; ?>"></td>
                     </tr>
                     <tr>
 
-                        <td>Nom</td>
+                        <td>Nom<?php $_SESSION['user']['nom']; ?></td>
                         <td><input type="text" name="nom" value="<?php echo $_SESSION['user']['nom']; ?>"></td>
                     </tr>
                     <tr>
