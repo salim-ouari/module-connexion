@@ -19,25 +19,22 @@ if (
     // recupérer la requete "est ce que j'ai un login déjà existant
     $resultat = mysqli_fetch_all($requete2);
 
-
     // si elle me renvoi rien "pas de login existant"
-    if (
-        count($resultat) == 0
+    if (count($resultat) == 0) {
+        if ($password == $confirm_password) {
 
-    ) {
-        // alors inscrit le dans ma base de donnée
-        $requete = mysqli_query($bdd, "INSERT INTO `utilisateurs`(`login`, `prenom`, `nom`, `password`) VALUES ('$login','$prenom','$nom','$password') ");
-        header('Location: connexion.php');
-        // sinon affiche compte déjà existant
-    } else
-
+            //  alors inscrit le dans ma base de donnée
+            $requete = mysqli_query($bdd, "INSERT INTO `utilisateurs`(`login`, `password`) VALUES ('$login','$password') ");
+            header('Location: connexion.php');
+        } else {
+            $message = 'les mots de passe ne sont pas identiques';
+        }
+    } else {
         $message = 'compte déjà existant';
-
-    if ($password != $confirm_password) {
-
-        $message = 'les mots de passe ne sont pas identiques';
     }
 }
+
+
 
 ?>
 
